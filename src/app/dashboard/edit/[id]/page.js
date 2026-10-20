@@ -1,9 +1,15 @@
 import { notFound } from "next/navigation";
+import { connection } from "next/server";
+
 import { createClient } from "@/lib/supabase/server";
+
 import DashboardSidebar from "@/components/DashboardSidebar";
 import SectionToggle from "@/components/SectionToggle";
+import InvitationPeopleForm from "@/components/InvitationPeopleForm";
+
 import "../../dashboard.css";
 import "../edit.css";
+
 export const instant = false;
 
 const SECTION_META = {
@@ -11,49 +17,63 @@ const SECTION_META = {
         label: "Cover",
         description: "Tampilan pembuka undangan",
     },
+
     people: {
         label: "Mempelai / Orang",
         description: "Informasi orang dalam acara",
     },
+
     event: {
         label: "Acara",
         description: "Tanggal dan waktu acara",
     },
+
     location: {
         label: "Lokasi",
         description: "Tempat dan maps",
     },
+
     countdown: {
         label: "Countdown",
         description: "Hitung mundur menuju acara",
     },
+
     gallery: {
         label: "Galeri",
         description: "Foto-foto acara",
     },
+
     speech: {
         label: "Ucapan",
         description: "Kata-kata dan doa",
     },
+
     rsvp: {
         label: "RSVP",
         description: "Konfirmasi kehadiran tamu",
     },
+
     messages: {
         label: "Pesan",
         description: "Pesan dari para tamu",
     },
+
     closing: {
         label: "Closing",
         description: "Bagian penutup undangan",
     },
+
     music: {
         label: "Music",
         description: "Musik latar undangan",
     },
 };
 
-export default async function EditInvitationPage({ params }) {
+export default async function EditInvitationPage({
+    params,
+}) {
+    await connection();
+
     const { id } = await params;
 
     const supabase = await createClient();
@@ -66,38 +86,44 @@ export default async function EditInvitationPage({ params }) {
         notFound();
     }
 
-    const { data: invitation, error: invitationError } =
-        await supabase
-            .from("invitations")
-            .select(`
-                id,
-                title,
-                slug,
-                status,
-                event_type_id,
-                template_id,
-                created_at
-            `)
-            .eq("id", id)
-            .eq("owner_id", user.id)
-            .single();
+    const {
+        data: invitation,
+        error: invitationError,
+    } = await supabase
+        .from("invitations")
+        .select(`
+            id,
+            title,
+            slug,
+            status,
+            event_type_id,
+            template_id,
+            created_at
+        `)
+        .eq("id", id)
+        .eq("owner_id", user.id)
+        .single();
 
     if (invitationError || !invitation) {
         notFound();
     }
 
-    const { data: sections, error: sectionsError } =
-        await supabase
-            .from("invitation_sections")
-            .select(`
-                id,
-                section_key,
-                enabled,
-                sort_order,
-                settings
-            `)
-            .eq("invitation_id", invitation.id)
-            .order("sort_order", { ascending: true });
+    const {
+        data: sections,
+        error: sectionsError,
+    } = await supabase
+        .from("invitation_sections")
+        .select(`
+            id,
+            section_key,
+            enabled,
+            sort_order,
+            settings
+        `)
+        .eq("invitation_id", invitation.id)
+        .order("sort_order", {
+            ascending: true,
+        });
 
     if (sectionsError) {
         throw new Error(
@@ -105,11 +131,18 @@ export default async function EditInvitationPage({ params }) {
         );
     }
 
+    const peopleEnabled = sections?.some(
+        (section) =>
+            section.section_key === "people" &&
+            section.enabled
+    );
+
     return (
         <div className="dashboard">
             <DashboardSidebar />
 
             <main className="dashboard-main">
+
                 <div className="dashboard-topbar">
                     <div className="topbar-title">
                         Edit Undangan
@@ -139,10 +172,14 @@ export default async function EditInvitationPage({ params }) {
                         </div>
                     </div>
 
+
                     {/* BUILDER */}
                     <div className="builder-layout">
 
-                        {/* SECTION MANAGER */}
+                        {/* =========================
+                            SECTION MANAGER
+                        ========================== */}
+
                         <div className="builder-card">
 
                             <div className="builder-card-header">
@@ -156,9 +193,11 @@ export default async function EditInvitationPage({ params }) {
                                 </p>
                             </div>
 
+
                             <div className="builder-section-list">
 
                                 {sections?.map((section) => {
+
                                     const meta =
                                         SECTION_META[
                                         section.section_key
@@ -169,6 +208,7 @@ export default async function EditInvitationPage({ params }) {
                                             className="builder-section"
                                             key={section.id}
                                         >
+
                                             <div>
                                                 <strong>
                                                     {meta?.label ||
@@ -181,35 +221,28 @@ export default async function EditInvitationPage({ params }) {
                                                 </span>
                                             </div>
 
-                                            <div
-                                                className="builder-section"
-                                                key={section.id}
-                                            >
-                                                <div>
-                                                    <strong>
-                                                        {meta?.label ||
-                                                            section.section_key}
-                                                    </strong>
+                                            <SectionToggle
+                                                sectionId={
+                                                    section.id
+                                                }
+                                                initialEnabled={
+                                                    section.enabled
+                                                }
+                                            />
 
-                                                    <span>
-                                                        {meta?.description ||
-                                                            "Bagian undangan"}
-                                                    </span>
-                                                </div>
-
-                                                <SectionToggle
-                                                    sectionId={section.id}
-                                                    initialEnabled={section.enabled}
-                                                />
-                                            </div>
                                         </div>
                                     );
                                 })}
 
                             </div>
+
                         </div>
 
-                        {/* DETAIL */}
+
+                        {/* =========================
+                            DETAIL DRAFT
+                        ========================== */}
+
                         <div className="builder-card">
 
                             <div className="builder-card-header">
@@ -218,32 +251,44 @@ export default async function EditInvitationPage({ params }) {
                                 </h2>
                             </div>
 
+
                             <div className="detail-row">
-                                <span>Status</span>
+                                <span>
+                                    Status
+                                </span>
 
                                 <strong>
                                     {invitation.status}
                                 </strong>
                             </div>
 
+
                             <div className="detail-row">
-                                <span>Link</span>
+                                <span>
+                                    Link
+                                </span>
 
                                 <strong>
                                     /i/{invitation.slug}
                                 </strong>
                             </div>
 
+
                             <div className="detail-row">
-                                <span>Section</span>
+                                <span>
+                                    Section
+                                </span>
 
                                 <strong>
                                     {sections?.length || 0} bagian
                                 </strong>
                             </div>
 
+
                             <div className="detail-row">
-                                <span>ID</span>
+                                <span>
+                                    ID
+                                </span>
 
                                 <strong className="id-text">
                                     {invitation.id}
@@ -251,9 +296,30 @@ export default async function EditInvitationPage({ params }) {
                             </div>
 
                         </div>
+
                     </div>
+
+
+                    {/* =========================
+                        DATA MEMPELAI
+                    ========================== */}
+
+                    {peopleEnabled && (
+                        <div className="builder-card builder-card-full">
+
+                            <InvitationPeopleForm
+                                invitationId={
+                                    invitation.id
+                                }
+                            />
+
+                        </div>
+                    )}
+
                 </div>
+
             </main>
+
         </div>
     );
 }

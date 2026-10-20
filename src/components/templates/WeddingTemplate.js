@@ -157,13 +157,33 @@ export default function WeddingTemplate({
         invitation?.title ||
         "Pernikahan Budi & Ani";
 
+    const people = invitation?.people || [];
+
+    const groom =
+        people.find(
+            (person) => person.role === "groom"
+        ) || null;
+
+    const bride =
+        people.find(
+            (person) => person.role === "bride"
+        ) || null;
+
     const groomName =
-        invitation?.groom_name ||
+        groom?.name ||
         "Budi";
 
     const brideName =
-        invitation?.bride_name ||
+        bride?.name ||
         "Ani";
+
+    const groomDescription =
+        groom?.description ||
+        "Putra dari Bapak & Ibu";
+
+    const brideDescription =
+        bride?.description ||
+        "Putri dari Bapak & Ibu";
 
     return (
         <div className="wedding-template">
@@ -304,15 +324,19 @@ export default function WeddingTemplate({
                                     <div className="wedding-person">
 
                                         <div className="wedding-person-photo">
-
                                             <div className="wedding-person-photo-inner">
-                                                <span>B</span>
+                                                {groom?.photo ? (
+                                                    <img
+                                                        src={groom.photo}
+                                                        alt={groomName}
+                                                    />
+                                                ) : (
+                                                    <span>B</span>
+                                                )}
                                             </div>
-
                                         </div>
 
                                         <div className="wedding-person-info">
-
                                             <small>
                                                 THE GROOM
                                             </small>
@@ -322,11 +346,8 @@ export default function WeddingTemplate({
                                             </h2>
 
                                             <p>
-                                                Putra dari
-                                                <br />
-                                                Bapak &amp; Ibu
+                                                {groomDescription}
                                             </p>
-
                                         </div>
 
                                     </div>
@@ -338,15 +359,19 @@ export default function WeddingTemplate({
                                     <div className="wedding-person">
 
                                         <div className="wedding-person-photo">
-
                                             <div className="wedding-person-photo-inner">
-                                                <span>A</span>
+                                                {bride?.photo ? (
+                                                    <img
+                                                        src={bride.photo}
+                                                        alt={brideName}
+                                                    />
+                                                ) : (
+                                                    <span>A</span>
+                                                )}
                                             </div>
-
                                         </div>
 
                                         <div className="wedding-person-info">
-
                                             <small>
                                                 THE BRIDE
                                             </small>
@@ -356,11 +381,8 @@ export default function WeddingTemplate({
                                             </h2>
 
                                             <p>
-                                                Putri dari
-                                                <br />
-                                                Bapak &amp; Ibu
+                                                {brideDescription}
                                             </p>
-
                                         </div>
 
                                     </div>

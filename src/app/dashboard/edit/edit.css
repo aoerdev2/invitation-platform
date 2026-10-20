@@ -362,3 +362,104 @@
         font-size: 10px !important;
     }
 }
+
+/* =========================================
+   FULL WIDTH BUILDER CARD
+========================================= */
+
+.builder-card-full {
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+    margin-top: 24px;
+}
+
+/* Pastikan form tidak dibatasi parent */
+
+.builder-card-full .people-form {
+    width: 100%;
+    max-width: none;
+}
+
+/* Grid Groom & Bride */
+
+.builder-card-full .people-form-grid {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* Mobile */
+
+@media (max-width: 900px) {
+    .builder-card-full .people-form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.builder-card-full {
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+    margin-top: 24px;
+    padding: 28px;
+}
+
+.builder-card-full .people-form {
+    width: 100%;
+    max-width: none;
+}
+
+.builder-card-full .people-form-grid {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 900px) {
+    .builder-card-full {
+        padding: 22px;
+    }
+
+    .builder-card-full .people-form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .builder-card-full {
+        padding: 18px;
+    }
+}
+
+.builder-card-full {
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+    margin-top: 24px;
+    padding: 28px;
+}
+
+.builder-card-full .people-form {
+    width: 100%;
+    max-width: none;
+}
+
+.builder-card-full .people-form-grid {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 900px) {
+    .builder-card-full {
+        padding: 22px;
+    }
+
+    .builder-card-full .people-form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .builder-card-full {
+        padding: 18px;
+    }
+}

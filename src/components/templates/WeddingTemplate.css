@@ -1732,3 +1732,10 @@ body.invitation-locked {
         animation: none !important;
     }
 }
+
+.wedding-person-photo-inner img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}

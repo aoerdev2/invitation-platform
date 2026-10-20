@@ -1,12 +1,15 @@
 import { notFound } from "next/navigation";
 import { connection } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+
 import WeddingTemplate from "@/components/templates/WeddingTemplate";
 import "@/components/templates/WeddingTemplate.css";
 
 export const instant = false;
 
-export default async function PreviewInvitationPage({ params }) {
+export default async function PreviewInvitationPage({
+    params,
+}) {
     await connection();
 
     const { id } = await params;
@@ -21,7 +24,14 @@ export default async function PreviewInvitationPage({ params }) {
         notFound();
     }
 
-    const { data: invitation, error } = await supabase
+    // =========================
+    // DATA UNDANGAN
+    // =========================
+
+    const {
+        data: invitation,
+        error,
+    } = await supabase
         .from("invitations")
         .select(`
             id,
@@ -39,21 +49,27 @@ export default async function PreviewInvitationPage({ params }) {
         notFound();
     }
 
-    const { data: sections, error: sectionsError } =
-        await supabase
-            .from("invitation_sections")
-            .select(`
-                id,
-                section_key,
-                enabled,
-                sort_order,
-                settings
-            `)
-            .eq("invitation_id", invitation.id)
-            .eq("enabled", true)
-            .order("sort_order", {
-                ascending: true,
-            });
+    // =========================
+    // DATA SECTION
+    // =========================
+
+    const {
+        data: sections,
+        error: sectionsError,
+    } = await supabase
+        .from("invitation_sections")
+        .select(`
+            id,
+            section_key,
+            enabled,
+            sort_order,
+            settings
+        `)
+        .eq("invitation_id", invitation.id)
+        .eq("enabled", true)
+        .order("sort_order", {
+            ascending: true,
+        });
 
     if (sectionsError) {
         throw new Error(
@@ -61,9 +77,50 @@ export default async function PreviewInvitationPage({ params }) {
         );
     }
 
+    // =========================
+    // DATA MEMPELAI
+    // =========================
+
+    const {
+        data: people,
+        error: peopleError,
+    } = await supabase
+        .from("invitation_people")
+        .select(`
+            id,
+            name,
+            role,
+            photo,
+            description,
+            sort_order
+        `)
+        .eq("invitation_id", invitation.id)
+        .order("sort_order", {
+            ascending: true,
+        });
+
+    if (peopleError) {
+        throw new Error(
+            `Gagal mengambil data mempelai: ${peopleError.message}`
+        );
+    }
+
+    // =========================
+    // GABUNGKAN DATA
+    // =========================
+
+    const invitationWithData = {
+        ...invitation,
+        people: people || [],
+    };
+
+    // =========================
+    // RENDER TEMPLATE
+    // =========================
+
     return (
         <WeddingTemplate
-            invitation={invitation}
+            invitation={invitationWithData}
             sections={sections || []}
         />
     );
