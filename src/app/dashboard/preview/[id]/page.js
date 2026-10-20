@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
 import { connection } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import WeddingTemplate from "@/components/templates/WeddingTemplate";
+import "@/components/templates/WeddingTemplate.css";
 
 export const instant = false;
 
@@ -10,7 +12,6 @@ export default async function PreviewInvitationPage({ params }) {
     const { id } = await params;
 
     const supabase = await createClient();
-
 
     const {
         data: { user },
@@ -38,18 +39,21 @@ export default async function PreviewInvitationPage({ params }) {
         notFound();
     }
 
-    const { data: sections, error: sectionsError } = await supabase
-        .from("invitation_sections")
-        .select(`
-            id,
-            section_key,
-            enabled,
-            sort_order,
-            settings
-        `)
-        .eq("invitation_id", invitation.id)
-        .eq("enabled", true)
-        .order("sort_order", { ascending: true });
+    const { data: sections, error: sectionsError } =
+        await supabase
+            .from("invitation_sections")
+            .select(`
+                id,
+                section_key,
+                enabled,
+                sort_order,
+                settings
+            `)
+            .eq("invitation_id", invitation.id)
+            .eq("enabled", true)
+            .order("sort_order", {
+                ascending: true,
+            });
 
     if (sectionsError) {
         throw new Error(
@@ -58,18 +62,9 @@ export default async function PreviewInvitationPage({ params }) {
     }
 
     return (
-        <main>
-            <h1>Preview Undangan</h1>
-
-            <p>{invitation.title}</p>
-
-            <hr />
-
-            {sections?.map((section) => (
-                <div key={section.id}>
-                    <strong>{section.section_key}</strong>
-                </div>
-            ))}
-        </main>
+        <WeddingTemplate
+            invitation={invitation}
+            sections={sections || []}
+        />
     );
 }

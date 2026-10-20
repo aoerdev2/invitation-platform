@@ -1,0 +1,1734 @@
+/* =========================================================
+   WEDDING TEMPLATE
+   Clean Burgundy / Cream / Gold
+   No SVG
+========================================================= */
+
+/* =========================
+   RESET
+========================= */
+
+.wedding-template {
+    --burgundy: #4b1018;
+    --burgundy-dark: #26080d;
+    --burgundy-deep: #170407;
+
+    --cream: #f8f2e8;
+    --cream-soft: #f2e8d9;
+    --paper: #fffaf3;
+
+    --gold: #c6a15b;
+    --gold-light: #e3c889;
+    --gold-dark: #96743b;
+
+    --text: #3c2927;
+    --text-soft: #765e59;
+
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    background: var(--cream);
+    color: var(--text);
+
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+.wedding-template *,
+.wedding-template *::before,
+.wedding-template *::after {
+    box-sizing: border-box;
+}
+
+.wedding-template button,
+.wedding-template input,
+.wedding-template textarea,
+.wedding-template select {
+    font: inherit;
+}
+
+.wedding-template h1,
+.wedding-template h2,
+.wedding-template h3,
+.wedding-template p {
+    margin: 0;
+}
+
+.wedding-template section {
+    position: relative;
+}
+
+
+/* =========================================================
+   BODY LOCK
+========================================================= */
+
+body.invitation-locked {
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   COVER
+========================================================= */
+
+.wedding-cover {
+    position: relative;
+
+    width: 100%;
+    min-height: 100svh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(circle at 50% 35%,
+            rgba(198, 161, 91, 0.16),
+            transparent 30%),
+        linear-gradient(145deg,
+            #120306 0%,
+            #3b0b12 48%,
+            #170407 100%);
+
+    color: #fff;
+}
+
+.wedding-cover::before {
+    content: "";
+
+    position: absolute;
+    inset: 22px;
+
+    border: 1px solid rgba(198, 161, 91, 0.35);
+
+    pointer-events: none;
+}
+
+.wedding-cover::after {
+    content: "";
+
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background: radial-gradient(circle,
+            rgba(198, 161, 91, 0.12),
+            transparent 68%);
+
+    filter: blur(5px);
+
+    pointer-events: none;
+}
+
+.wedding-cover-overlay {
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.12),
+            rgba(0, 0, 0, 0.28));
+
+    pointer-events: none;
+}
+
+.wedding-cover-glow {
+    position: absolute;
+
+    width: 260px;
+    height: 260px;
+
+    left: 50%;
+    top: 28%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background: rgba(198, 161, 91, 0.12);
+
+    filter: blur(60px);
+
+    pointer-events: none;
+}
+
+.wedding-cover-content {
+    position: relative;
+    z-index: 2;
+
+    width: min(90%, 720px);
+
+    min-height: 100svh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 70px 20px 60px;
+
+    text-align: center;
+}
+
+.wedding-cover-top {
+    margin-top: 10px;
+}
+
+.wedding-eyebrow {
+    color: var(--gold-light);
+
+    font-size: 11px;
+    font-weight: 600;
+
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+}
+
+.wedding-couple {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px 0;
+}
+
+.wedding-couple h1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: #fff;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(48px, 10vw, 88px);
+    font-weight: 400;
+
+    line-height: 0.92;
+
+    letter-spacing: -0.04em;
+
+    text-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+.wedding-couple h1 span {
+    margin: 13px 0;
+
+    color: var(--gold-light);
+
+    font-size: 0.36em;
+    font-style: italic;
+
+    letter-spacing: 0;
+}
+
+.wedding-cover-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wedding-date {
+    margin-bottom: 22px;
+
+    color: rgba(255, 255, 255, 0.7);
+
+    font-size: 10px;
+    font-weight: 600;
+
+    letter-spacing: 0.42em;
+}
+
+.wedding-open-button {
+    position: relative;
+
+    padding: 15px 28px;
+
+    border: 1px solid rgba(227, 200, 137, 0.65);
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, 0.04);
+
+    color: var(--gold-light);
+
+    font-size: 11px;
+    font-weight: 600;
+
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(8px);
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.wedding-open-button:hover {
+    background: rgba(198, 161, 91, 0.12);
+
+    border-color: var(--gold-light);
+
+    transform: translateY(-2px);
+}
+
+.wedding-open-line {
+    position: absolute;
+
+    left: 50%;
+    bottom: -9px;
+
+    width: 28px;
+    height: 1px;
+
+    transform: translateX(-50%);
+
+    background: var(--gold);
+}
+
+.wedding-cover-scroll {
+    position: absolute;
+
+    z-index: 3;
+
+    left: 50%;
+    bottom: 18px;
+
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 8px;
+
+    opacity: 0.55;
+}
+
+.wedding-cover-scroll span {
+    width: 1px;
+    height: 28px;
+
+    background: var(--gold-light);
+
+    animation: weddingScroll 1.8s ease-in-out infinite;
+}
+
+.wedding-cover-scroll small {
+    color: rgba(255, 255, 255, 0.6);
+
+    font-size: 7px;
+
+    letter-spacing: 0.3em;
+}
+
+@keyframes weddingScroll {
+    0% {
+        transform: scaleY(0.4);
+        transform-origin: top;
+        opacity: 0.3;
+    }
+
+    50% {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scaleY(0.4);
+        transform-origin: bottom;
+        opacity: 0.3;
+    }
+}
+
+
+/* =========================================================
+   COVER OPEN
+========================================================= */
+
+.wedding-cover-opened {
+    pointer-events: none;
+}
+
+.wedding-cover.cover-opened {
+    animation: coverFadeOut 0.8s ease forwards;
+}
+
+@keyframes coverFadeOut {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(1.03);
+        visibility: hidden;
+    }
+}
+
+
+/* =========================================================
+   MUSIC CONTROL
+========================================================= */
+
+.wedding-music-control {
+    position: fixed;
+
+    z-index: 100;
+
+    right: 22px;
+    bottom: 22px;
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 50%;
+
+    background: rgba(50, 12, 19, 0.72);
+
+    color: var(--gold-light);
+
+    cursor: pointer;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(12px) scale(0.9);
+
+    backdrop-filter: blur(14px);
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease,
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+.wedding-music-control.visible {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0) scale(1);
+}
+
+.wedding-music-control:hover {
+    background: rgba(75, 16, 24, 0.92);
+
+    transform: translateY(-2px) scale(1.03);
+}
+
+.music-icon {
+    position: relative;
+    z-index: 2;
+
+    font-size: 19px;
+
+    line-height: 1;
+}
+
+.music-ring {
+    position: absolute;
+    inset: -5px;
+
+    border: 1px solid rgba(198, 161, 91, 0.2);
+
+    border-radius: 50%;
+}
+
+.wedding-music-control.playing .music-ring {
+    animation: musicPulse 1.8s ease-out infinite;
+}
+
+@keyframes musicPulse {
+    0% {
+        transform: scale(0.92);
+        opacity: 0.7;
+    }
+
+    70% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.wedding-content {
+    position: relative;
+
+    width: 100%;
+
+    background: var(--cream);
+
+    animation: contentReveal 1s ease both;
+}
+
+@keyframes contentReveal {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   PEOPLE
+========================================================= */
+
+.wedding-people {
+    position: relative;
+
+    overflow: hidden;
+
+    padding: 110px 20px 100px;
+
+    background:
+        radial-gradient(circle at 50% 10%,
+            rgba(198, 161, 91, 0.13),
+            transparent 32%),
+        linear-gradient(180deg,
+            #fffaf3 0%,
+            #f4eadc 100%);
+}
+
+.wedding-people::before {
+    content: "";
+
+    position: absolute;
+    inset: 25px;
+
+    border-top: 1px solid rgba(150, 116, 59, 0.18);
+    border-bottom: 1px solid rgba(150, 116, 59, 0.18);
+
+    pointer-events: none;
+}
+
+.people-content-inner {
+    position: relative;
+    z-index: 2;
+
+    width: min(100%, 1000px);
+
+    margin: 0 auto;
+}
+
+.people-divider-top,
+.people-divider-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    margin: 0 auto 50px;
+
+    width: min(220px, 60%);
+}
+
+.people-divider-bottom {
+    margin-top: 55px;
+    margin-bottom: 0;
+}
+
+.people-divider-top span,
+.people-divider-bottom span {
+    flex: 1;
+
+    height: 1px;
+
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(150, 116, 59, 0.5));
+}
+
+.people-divider-top span:last-child,
+.people-divider-bottom span:last-child {
+    background: linear-gradient(90deg,
+            rgba(150, 116, 59, 0.5),
+            transparent);
+}
+
+.people-divider-top i {
+    width: 7px;
+    height: 7px;
+
+    border: 1px solid var(--gold-dark);
+
+    transform: rotate(45deg);
+}
+
+.people-divider-symbol {
+    flex: none !important;
+
+    width: auto !important;
+    height: auto !important;
+
+    background: none !important;
+
+    color: var(--gold-dark);
+
+    font-size: 13px;
+}
+
+.wedding-people-intro {
+    max-width: 620px;
+
+    margin: 0 auto 80px;
+
+    text-align: center;
+}
+
+.wedding-section-label {
+    margin-bottom: 15px;
+
+    color: var(--gold-dark);
+
+    font-size: 10px;
+    font-weight: 600;
+
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+}
+
+.wedding-people-intro h2 {
+    color: var(--burgundy);
+
+    font-size: clamp(38px, 7vw, 62px);
+    font-weight: 400;
+
+    line-height: 1.05;
+
+    letter-spacing: -0.035em;
+}
+
+.wedding-people-intro>p:last-child {
+    max-width: 470px;
+
+    margin: 25px auto 0;
+
+    color: var(--text-soft);
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+
+/* =========================================================
+   COUPLE
+========================================================= */
+
+.wedding-couple-names {
+    display: grid;
+
+    grid-template-columns: 1fr auto 1fr;
+
+    align-items: center;
+
+    gap: 45px;
+
+    width: min(100%, 900px);
+
+    margin: 0 auto;
+}
+
+.wedding-person {
+    text-align: center;
+}
+
+.wedding-person-photo {
+    width: 190px;
+    height: 190px;
+
+    margin: 0 auto 28px;
+
+    padding: 7px;
+
+    border: 1px solid rgba(150, 116, 59, 0.55);
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.wedding-person-photo-inner {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(circle at 50% 35%,
+            rgba(255, 255, 255, 0.35),
+            transparent 35%),
+        linear-gradient(145deg,
+            #5b1720,
+            #2c080e);
+
+    color: var(--gold-light);
+
+    font-size: 54px;
+
+    font-style: italic;
+
+    box-shadow:
+        inset 0 0 30px rgba(0, 0, 0, 0.15);
+}
+
+.wedding-person-info small {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: var(--gold-dark);
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    letter-spacing: 0.3em;
+}
+
+.wedding-person-info h2 {
+    color: var(--burgundy);
+
+    font-size: clamp(30px, 5vw, 44px);
+    font-weight: 400;
+
+    line-height: 1;
+}
+
+.wedding-person-info p {
+    margin-top: 14px;
+
+    color: var(--text-soft);
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.wedding-and {
+    position: relative;
+
+    width: 70px;
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wedding-and::before,
+.wedding-and::after {
+    content: "";
+
+    position: absolute;
+
+    width: 1px;
+    height: 48px;
+
+    background: rgba(150, 116, 59, 0.35);
+}
+
+.wedding-and::before {
+    top: -45px;
+}
+
+.wedding-and::after {
+    bottom: -45px;
+}
+
+.wedding-and span {
+    color: var(--gold-dark);
+
+    font-size: 35px;
+    font-style: italic;
+
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+
+/* =========================================================
+   QUOTE
+========================================================= */
+
+.people-quote {
+    width: min(100%, 700px);
+
+    margin: 75px auto 0;
+
+    text-align: center;
+}
+
+.people-quote>span {
+    display: block;
+
+    height: 18px;
+
+    color: var(--gold);
+
+    font-size: 38px;
+    line-height: 20px;
+
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+.people-quote p {
+    margin: 10px auto;
+
+    color: var(--text-soft);
+
+    font-size: 15px;
+    font-style: italic;
+
+    line-height: 1.9;
+}
+
+.people-quote strong {
+    display: block;
+
+    margin-top: 14px;
+
+    color: var(--gold-dark);
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 9px;
+    font-style: normal;
+
+    letter-spacing: 0.18em;
+}
+
+
+/* =========================================================
+   GENERAL SECTIONS
+========================================================= */
+
+.wedding-section {
+    padding: 100px 20px;
+
+    text-align: center;
+}
+
+.wedding-section h2 {
+    margin-bottom: 20px;
+
+    color: var(--burgundy);
+
+    font-size: clamp(36px, 7vw, 58px);
+    font-weight: 400;
+
+    line-height: 1.1;
+}
+
+.wedding-section p {
+    color: var(--text-soft);
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   EVENT
+========================================================= */
+
+.wedding-event {
+    background: var(--burgundy);
+
+    color: #fff;
+}
+
+.wedding-event .wedding-section-label {
+    color: var(--gold-light);
+}
+
+.wedding-event h2 {
+    color: #fff;
+}
+
+.wedding-event p {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.wedding-event p+p {
+    margin-top: 5px;
+}
+
+
+/* =========================================================
+   LOCATION
+========================================================= */
+
+.wedding-location {
+    background: var(--paper);
+}
+
+.wedding-location p+p {
+    margin-top: 3px;
+}
+
+
+/* =========================================================
+   COUNTDOWN
+========================================================= */
+
+.wedding-countdown {
+    background:
+        linear-gradient(135deg,
+            #f0e2ce,
+            #fbf6ed);
+}
+
+.wedding-countdown p {
+    max-width: 520px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+.wedding-gallery {
+    background: #fffaf3;
+}
+
+.wedding-gallery-grid {
+    width: min(100%, 900px);
+
+    margin: 45px auto 0;
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 12px;
+}
+
+.wedding-gallery-item {
+    aspect-ratio: 1 / 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(150, 116, 59, 0.2);
+
+    background:
+        linear-gradient(145deg,
+            #eadcc9,
+            #d8c5ab);
+
+    color: rgba(75, 16, 24, 0.55);
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    font-size: 11px;
+
+    letter-spacing: 0.1em;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.wedding-gallery-item:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 15px 35px rgba(60, 30, 20, 0.12);
+}
+
+
+/* =========================================================
+   SPEECH
+========================================================= */
+
+.wedding-speech {
+    background: var(--cream-soft);
+}
+
+.wedding-speech p {
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   RSVP
+========================================================= */
+
+.wedding-rsvp {
+    background: var(--burgundy-dark);
+}
+
+.wedding-rsvp .wedding-section-label {
+    color: var(--gold-light);
+}
+
+.wedding-rsvp h2 {
+    color: #fff;
+}
+
+.wedding-rsvp p {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+
+/* =========================================================
+   MESSAGES
+========================================================= */
+
+.wedding-messages {
+    background: var(--paper);
+}
+
+.wedding-messages p {
+    max-width: 550px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   CLOSING
+========================================================= */
+
+.wedding-closing {
+    min-height: 70vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(circle at 50% 35%,
+            rgba(198, 161, 91, 0.13),
+            transparent 35%),
+        var(--burgundy-deep);
+
+    color: #fff;
+}
+
+.wedding-closing .wedding-section-label {
+    color: var(--gold-light);
+}
+
+.wedding-closing h2 {
+    color: #fff;
+}
+
+.wedding-closing p {
+    max-width: 520px;
+
+    color: rgba(255, 255, 255, 0.68);
+}
+
+.wedding-closing strong {
+    margin-top: 30px;
+
+    color: var(--gold-light);
+
+    font-size: 20px;
+    font-weight: 400;
+    font-style: italic;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 800px) {
+    .wedding-couple-names {
+        gap: 25px;
+    }
+
+    .wedding-person-photo {
+        width: 155px;
+        height: 155px;
+    }
+
+    .wedding-gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+    .wedding-cover-content {
+        padding:
+            55px 20px 48px;
+    }
+
+    .wedding-cover::before {
+        inset: 14px;
+    }
+
+    .wedding-eyebrow {
+        font-size: 9px;
+
+        letter-spacing: 0.28em;
+    }
+
+    .wedding-couple h1 {
+        font-size: clamp(48px, 17vw, 72px);
+    }
+
+    .wedding-date {
+        font-size: 8px;
+
+        letter-spacing: 0.28em;
+    }
+
+    .wedding-open-button {
+        padding: 13px 23px;
+
+        font-size: 9px;
+    }
+
+    .wedding-cover-scroll {
+        bottom: 12px;
+    }
+
+    .wedding-cover-scroll small {
+        font-size: 6px;
+    }
+
+    .wedding-music-control {
+        right: 16px;
+        bottom: 16px;
+
+        width: 44px;
+        height: 44px;
+    }
+
+    .wedding-people {
+        padding: 80px 18px;
+    }
+
+    .wedding-people::before {
+        inset: 15px;
+    }
+
+    .wedding-people-intro {
+        margin-bottom: 55px;
+    }
+
+    .wedding-people-intro h2 {
+        font-size: 42px;
+    }
+
+    .wedding-people-intro>p:last-child {
+        font-size: 12px;
+
+        line-height: 1.8;
+    }
+
+    .wedding-couple-names {
+        grid-template-columns: 1fr;
+
+        gap: 55px;
+    }
+
+    .wedding-person-photo {
+        width: 155px;
+        height: 155px;
+    }
+
+    .wedding-person-info h2 {
+        font-size: 36px;
+    }
+
+    .wedding-and {
+        width: 50px;
+        height: 50px;
+
+        margin: -15px auto;
+    }
+
+    .wedding-and::before,
+    .wedding-and::after {
+        display: none;
+    }
+
+    .wedding-and span {
+        font-size: 30px;
+    }
+
+    .people-quote {
+        margin-top: 60px;
+    }
+
+    .people-quote p {
+        font-size: 13px;
+
+        line-height: 1.8;
+    }
+
+    .wedding-section {
+        padding: 75px 18px;
+    }
+
+    .wedding-section h2 {
+        font-size: 40px;
+    }
+
+    .wedding-section p {
+        font-size: 13px;
+    }
+
+    .wedding-gallery-grid {
+        gap: 8px;
+    }
+
+    .wedding-gallery-item {
+        font-size: 9px;
+    }
+
+    .wedding-closing {
+        min-height: 65vh;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL SCREEN
+========================================================= */
+
+@media (max-width: 380px) {
+    .wedding-couple h1 {
+        font-size: 46px;
+    }
+
+    .wedding-people-intro h2 {
+        font-size: 36px;
+    }
+
+    .wedding-person-photo {
+        width: 140px;
+        height: 140px;
+    }
+
+    .wedding-person-info h2 {
+        font-size: 32px;
+    }
+
+    .wedding-section h2 {
+        font-size: 34px;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .wedding-template *,
+    .wedding-template *::before,
+    .wedding-template *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* =========================================================
+   PREMIUM SCROLL REVEAL
+========================================================= */
+
+/*
+   Elemen default dibuat sedikit turun + transparan.
+   Saat masuk viewport, class .is-visible akan diberikan
+   oleh IntersectionObserver dari JS.
+*/
+
+.wedding-section,
+.wedding-people-intro,
+.wedding-couple-names,
+.people-quote,
+.people-divider-top,
+.people-divider-bottom {
+    opacity: 0;
+    transform: translateY(45px);
+
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wedding-section.is-visible,
+.wedding-people-intro.is-visible,
+.wedding-couple-names.is-visible,
+.people-quote.is-visible,
+.people-divider-top.is-visible,
+.people-divider-bottom.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   PEOPLE REVEAL
+========================================================= */
+
+.wedding-people-intro.is-visible {
+    transition-delay: 0.05s;
+}
+
+.wedding-couple-names.is-visible {
+    transition-delay: 0.18s;
+}
+
+.people-quote.is-visible {
+    transition-delay: 0.28s;
+}
+
+
+/* =========================================================
+   COUPLE PHOTO FLOAT
+========================================================= */
+
+.wedding-person-photo {
+    transition:
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.8s ease;
+}
+
+.wedding-couple-names.is-visible .wedding-person:first-child .wedding-person-photo {
+    animation: coupleFloatLeft 5s ease-in-out infinite;
+}
+
+.wedding-couple-names.is-visible .wedding-person:last-child .wedding-person-photo {
+    animation: coupleFloatRight 5.5s ease-in-out infinite;
+}
+
+@keyframes coupleFloatLeft {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(-1deg);
+    }
+
+    50% {
+        transform: translateY(-7px) rotate(1deg);
+    }
+}
+
+@keyframes coupleFloatRight {
+
+    0%,
+    100% {
+        transform: translateY(-3px) rotate(1deg);
+    }
+
+    50% {
+        transform: translateY(5px) rotate(-1deg);
+    }
+}
+
+
+/* =========================================================
+   GOLD DIVIDER REVEAL
+========================================================= */
+
+.people-divider-top span,
+.people-divider-bottom span {
+    transform: scaleX(0);
+
+    transform-origin: center;
+
+    transition:
+        transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.people-divider-top.is-visible span,
+.people-divider-bottom.is-visible span {
+    transform: scaleX(1);
+}
+
+.people-divider-top i {
+    opacity: 0;
+
+    transform: rotate(45deg) scale(0.4);
+
+    transition:
+        opacity 0.5s ease 0.35s,
+        transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.35s;
+}
+
+.people-divider-top.is-visible i {
+    opacity: 1;
+
+    transform: rotate(45deg) scale(1);
+}
+
+
+/* =========================================================
+   QUOTE MARK
+========================================================= */
+
+.people-quote>span {
+    opacity: 0;
+
+    transform: translateY(10px);
+
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease;
+}
+
+.people-quote.is-visible>span {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   GENERAL SECTION MICRO ANIMATION
+========================================================= */
+
+.wedding-section.is-visible .wedding-section-label {
+    animation: labelReveal 0.8s ease both;
+}
+
+.wedding-section.is-visible h2 {
+    animation: titleReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.08s both;
+}
+
+.wedding-section.is-visible>p {
+    animation: paragraphReveal 0.8s ease 0.18s both;
+}
+
+@keyframes labelReveal {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+        letter-spacing: 0.48em;
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        letter-spacing: 0.32em;
+    }
+}
+
+@keyframes titleReveal {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes paragraphReveal {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   GALLERY STAGGER
+========================================================= */
+
+.wedding-gallery-grid {
+    opacity: 0;
+
+    transform: translateY(30px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wedding-gallery.is-visible .wedding-gallery-grid {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+.wedding-gallery-item {
+    opacity: 0;
+
+    transform:
+        translateY(25px) scale(0.96);
+
+    transition:
+        opacity 0.7s ease,
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.wedding-gallery.is-visible .wedding-gallery-item:nth-child(1) {
+    transition-delay: 0.08s;
+}
+
+.wedding-gallery.is-visible .wedding-gallery-item:nth-child(2) {
+    transition-delay: 0.16s;
+}
+
+.wedding-gallery.is-visible .wedding-gallery-item:nth-child(3) {
+    transition-delay: 0.24s;
+}
+
+.wedding-gallery.is-visible .wedding-gallery-item:nth-child(4) {
+    transition-delay: 0.32s;
+}
+
+.wedding-gallery.is-visible .wedding-gallery-item {
+    opacity: 1;
+
+    transform:
+        translateY(0) scale(1);
+}
+
+
+/* =========================================================
+   FLOATING GOLD PARTICLES
+========================================================= */
+
+.wedding-people::after {
+    content: "✦";
+
+    position: absolute;
+
+    top: 18%;
+    left: 8%;
+
+    color: rgba(198, 161, 91, 0.35);
+
+    font-size: 15px;
+
+    animation:
+        floatingStar 6s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+.wedding-location::after {
+    content: "✦";
+
+    position: absolute;
+
+    right: 9%;
+    top: 25%;
+
+    color: rgba(198, 161, 91, 0.25);
+
+    font-size: 12px;
+
+    animation:
+        floatingStar 7s ease-in-out 1s infinite;
+
+    pointer-events: none;
+}
+
+.wedding-countdown::after {
+    content: "✦";
+
+    position: absolute;
+
+    left: 12%;
+    bottom: 18%;
+
+    color: rgba(150, 116, 59, 0.3);
+
+    font-size: 13px;
+
+    animation:
+        floatingStar 6.5s ease-in-out 0.5s infinite;
+
+    pointer-events: none;
+}
+
+@keyframes floatingStar {
+
+    0%,
+    100% {
+        transform:
+            translate3d(0, 0, 0) rotate(0deg);
+
+        opacity: 0.3;
+    }
+
+    50% {
+        transform:
+            translate3d(8px, -15px, 0) rotate(35deg);
+
+        opacity: 0.8;
+    }
+}
+
+
+/* =========================================================
+   CLOSING AMBIENCE
+========================================================= */
+
+.wedding-closing::before {
+    content: "";
+
+    position: absolute;
+
+    width: 260px;
+    height: 260px;
+
+    left: 50%;
+    top: 40%;
+
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(circle,
+            rgba(198, 161, 91, 0.12),
+            transparent 70%);
+
+    filter: blur(15px);
+
+    animation: closingGlow 6s ease-in-out infinite;
+
+    pointer-events: none;
+}
+
+@keyframes closingGlow {
+
+    0%,
+    100% {
+        transform:
+            translate(-50%, -50%) scale(0.9);
+
+        opacity: 0.55;
+    }
+
+    50% {
+        transform:
+            translate(-50%, -50%) scale(1.15);
+
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   MOBILE MOTION
+========================================================= */
+
+@media (max-width: 600px) {
+    .wedding-people::after {
+        left: 5%;
+    }
+
+    .wedding-location::after {
+        right: 5%;
+    }
+
+    .wedding-countdown::after {
+        left: 7%;
+    }
+
+    .wedding-person-photo {
+        animation-duration: 6s !important;
+    }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .wedding-section,
+    .wedding-people-intro,
+    .wedding-couple-names,
+    .people-quote,
+    .people-divider-top,
+    .people-divider-bottom,
+    .wedding-gallery-grid,
+    .wedding-gallery-item {
+        opacity: 1 !important;
+
+        transform: none !important;
+
+        transition: none !important;
+    }
+
+    .wedding-person-photo,
+    .wedding-people::after,
+    .wedding-location::after,
+    .wedding-countdown::after,
+    .wedding-closing::before {
+        animation: none !important;
+    }
+}
